@@ -199,3 +199,23 @@ body {
 }
 
 /* ... and so on for the rest of the new styles ... */
+.event-card .card-header h4 {
+    margin: 0;
+    color: #ff7200;
+    font-size: 40px; /* <-- Add this line to increase the font size */
+}
+/* Find and replace the existing rule with this one */
+.event-card .event-checkbox {
+    /* --- SIZE --- */
+    /* Change the number to make it bigger or smaller. 1.8 is larger than before. */
+    transform: scale(2);
+    
+    /* --- ORIENTATION (Spacing) --- */
+    /* Adds space between the title and the checkbox */
+    margin-left: 1350px;
+    
+    /* Optional: Uncomment the line below to nudge the checkbox down a bit */
+    margin-bottom: 1px; 
+    
+    cursor: pointer;
+}
