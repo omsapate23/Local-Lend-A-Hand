@@ -157,3 +157,45 @@ body {
         font-size: 16px;
     }
 }
+/* =================================== */
+/* YOUR ORIGINAL CODE STAYS HERE       */
+/* =================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ... all of your other existing styles ... */
+
+@media (max-width: 768px) {
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    /* ... your other media query styles ... */
+}
+
+/* =================================== */
+/* PASTE THE NEW CODE AT THE VERY END  */
+/* =================================== */
+/* --- Styles for the new Event List --- */
+
+.events-list {
+    margin-top: 40px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.event-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+}
+
+/* ... and so on for the rest of the new styles ... */
