@@ -29,44 +29,19 @@ body {
 .nav-menu ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 40px;
 }
 
 .nav-menu ul li a {
     text-decoration: none;
     color: white;
     font-weight: 500;
+    transition: color 0.3s;
 }
 
 .nav-menu ul li a:hover {
     color: #ffca28;
 }
-
-
-.search {
-    display: flex;
-    gap: 10px;
-}
-
-.srch {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-}
-
-.btn {
-    padding: 8px 16px;
-    background-color: #ffca28;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.btn:hover {
-    background-color: #ffc107;
-}
-
 
 .tag {
     background: center/cover no-repeat;
