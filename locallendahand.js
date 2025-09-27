@@ -1,3 +1,7 @@
+// Import the necessary Firebase modules and your database configuration
+import { db } from './firebase-config.js';
+import { collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
 // Wait for the entire HTML document to load before running the script
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -8,27 +12,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const serviceCards = document.querySelectorAll('.service-cards .card');
     const navLinks = document.querySelectorAll('.nav-menu a');
 
-    // --- Main Function to Load and Display Events from JSON ---
+    // --- Main Function to Load and Display Events from FIREBASE ---
     async function loadAndDisplayEvents() {
         try {
-            // Fetch the data from your JSON file
-            const response = await fetch('ngos.json');
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const events = await response.json();
+            // Create a query to get all documents from the "opportunities" collection, sorted by date
+            const q = query(collection(db, "opportunities"), orderBy("date", "asc"));
+            const querySnapshot = await getDocs(q);
 
             // Create a container for the event listings
             const eventsContainer = document.createElement('div');
             eventsContainer.className = 'events-list';
             eventsContainer.innerHTML = '<h2>Upcoming Events (Select to Get Involved)</h2>';
+            
+            if (querySnapshot.empty) {
+                 eventsContainer.innerHTML += '<p>No upcoming events found. Check back soon!</p>';
+            }
 
-            // Loop through each event and create a styled card
-            events.forEach(event => {
+            // Loop through each event from the database and create a card
+            querySnapshot.forEach(doc => {
+                const event = doc.data();
                 const eventCard = document.createElement('div');
                 eventCard.className = 'event-card';
 
-                // *** THIS IS THE UPDATED HTML STRUCTURE FOR EACH CARD ***
                 eventCard.innerHTML = `
                     <div class="card-header">
                         <h4>${event.title}</h4>
@@ -62,40 +67,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- "Get Involved" Button Functionality ---
     getInvolvedBtn.addEventListener('click', (event) => {
         event.preventDefault();
-
-        // Find all checkboxes that are currently checked
         const selectedCheckboxes = document.querySelectorAll('.event-checkbox:checked');
 
-        // If no events are selected, alert the user and stop
         if (selectedCheckboxes.length === 0) {
             alert('Please select at least one event to get involved in!');
             return;
         }
-
-        // Get the titles of the selected events
         const selectedEvents = Array.from(selectedCheckboxes).map(checkbox => checkbox.value);
-
-        // Smoothly scroll down to the contact section
         contactSection.scrollIntoView({ behavior: 'smooth' });
-
-        // Create the signup form, passing the selected events
         createSignupForm(selectedEvents);
     });
 
     // --- Function to Dynamically Create the Sign-up Form ---
     function createSignupForm(selectedEvents) {
-        // Remove any old form that might exist
         const oldForm = document.getElementById('signup-form-container');
         if (oldForm) {
             oldForm.remove();
         }
-
         const formContainer = document.createElement('div');
         formContainer.id = 'signup-form-container';
-
-        // Create list items for each selected event
         const eventsListItems = selectedEvents.map(eventTitle => `<li>${eventTitle}</li>`).join('');
-
         formContainer.innerHTML = `
             <h3>Sign Up for Events</h3>
             <p>You are signing up for:</p>
@@ -106,17 +97,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button type="submit" class="tag-btn" style="background-color: #00796b; color: white;">Confirm & Sign Up</button>
             </form>
         `;
-
         contactSection.appendChild(formContainer);
 
-        // Add functionality to the newly created form
         const signupForm = document.getElementById('signup-form');
         signupForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const userName = signupForm.querySelector('input[name="name"]').value;
             alert(`Thank you, ${userName}! You've been signed up for the selected events. We'll be in touch soon.`);
             signupForm.reset();
-            // Uncheck all boxes after successful signup
             document.querySelectorAll('.event-checkbox:checked').forEach(box => box.checked = false);
         });
     }
