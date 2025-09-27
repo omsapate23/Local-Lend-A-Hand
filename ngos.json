@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Tree Plantation Drive",
+    "organizer": "Green Satara Foundation",
+    "date": "2025-09-28",
+    "location": "Gandhi Maidan, Satara",
+    "description": "Help us plant 100 saplings to make our city greener. Gloves and tools will be provided."
+  },
+  {
+    "id": 2,
+    "title": "Teach at the Orphanage",
+    "organizer": "Hope for Children NGO",
+    "date": "2025-09-27",
+    "location": "Vidya Nagar, Satara",
+    "description": "Spend two hours teaching basic English and Math to children aged 6-10."
+  },
+  {
+    "id" : 3,
+    "title" : "Help needed for our little ones",
+    "organizer" : "Swastika Dog Home",
+    "date" : "2025-09-29",
+    "location" : "Viman Nagar, Pune",
+    "description" : "Any help / volunteers would be highly appreciated"
+  },
+  {
+    "id" : 4,
+    "title" : "Bralie Books, stationaries and financial aid needed",
+    "organizer" : "Drishti,NGO for the visually impared",
+    "date" : "2025-09-30",
+    "location" : "Hadapsar,Pune",
+    "description" : "Please help our children out, any help is appreciated"
+  },
+  {
+    "id" : 5,
+    "title" : "Volunteers needed for blood donation",
+    "organizer" : "National Service Scheme",
+    "date" : "2025-10-1",
+    "location" : "Pune station, Pune",
+    "description" : "volunteers needed for a good cause"
+  }
+]
