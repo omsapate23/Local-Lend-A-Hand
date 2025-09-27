@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Organizer Dashboard - Local-Lend-a-Hand</title>
+    <link rel="stylesheet" href="style2.css"> <link rel="stylesheet" href="organizer.css"> </head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">Organizer Dashboard</div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index2.html">View Volunteer Page</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+        <section class="add-event-form">
+            <h2>Add a New Event or Opportunity</h2>
+            <form id="create-event-form">
+                <div class="form-group">
+                    <label for="event-title">Event Title</label>
+                    <input type="text" id="event-title" name="title" placeholder="e.g., Tree Plantation Drive" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="organizer-name">Your Organization's Name</label>
+                    <input type="text" id="organizer-name" name="organizer" placeholder="e.g., Green Satara Foundation" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="event-date">Date of Event</label>
+                    <input type="date" id="event-date" name="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="event-location">Location</label>
+                    <input type="text" id="event-location" name="location" placeholder="e.g., Gandhi Maidan, Satara" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="event-description">Event Description</label>
+                    <textarea id="event-description" name="description" rows="4" placeholder="Briefly describe the event and what volunteers will do." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Add Event to List</button>
+            </form>
+        </section>
+
+        <section class="current-events">
+            <h2>Your Current Events</h2>
+            <div id="current-events-container">
+                <p>Your active events will be displayed here...</p>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+/* Styles specifically for the Organizer Dashboard */
+
+body {
+    background-color: #f5f5f5; /* Light grey background */
+}
+
+.dashboard-container {
+    max-width: 800px;
+    margin: 40px auto; /* Center the container on the page */
+    padding: 20px;
+}
+
+.add-event-form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+}
+
+.add-event-form h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #00796b; /* Teal color from your theme */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; /* Important for consistent sizing */
+}
+
+.form-group textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #ff7200; /* Orange color from your navbar */
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #e66000; /* Darker orange on hover */
+}
+
+.current-events h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#current-events-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 100px;
+}
