@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 .details{
     text-align: center;
     color: blue;
     font-family: 'Arial', sans-serif;
     margin-top: 50px;
+=======
+.details{
+    text-align: center;
+    color: blue;
+    font-family: 'Arial', sans-serif;
+    margin-top: 50px;
+>>>>>>> e405d79bffe5719d70eb04d1e381760939672143
 }
