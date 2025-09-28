@@ -212,10 +212,11 @@ body {
     
     /* --- ORIENTATION (Spacing) --- */
     /* Adds space between the title and the checkbox */
-    margin-left: 1350px;
+    margin-left: 1200px;
     
     /* Optional: Uncomment the line below to nudge the checkbox down a bit */
     margin-bottom: 1px; 
     
     cursor: pointer;
+    margin-right: 10px;
 }
