@@ -77,12 +77,12 @@ body {
 .about, .services, .contact {
     padding: 60px 40px;
     text-align: center;
-    background-color: #28a347;
+    background-color: #0ffcbe;
 }
 
 .about h2, .services h2, .contact h2 {
     margin-bottom: 20px;
-    color: #00796b;
+    color: #000a09;
 }
 
 .about p {
