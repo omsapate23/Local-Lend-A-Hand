@@ -157,9 +157,7 @@ body {
         font-size: 16px;
     }
 }
-/* =================================== */
-/* YOUR ORIGINAL CODE STAYS HERE       */
-/* =================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -167,7 +165,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* ... all of your other existing styles ... */
+
 
 @media (max-width: 768px) {
     .nav-menu ul {
@@ -175,13 +173,10 @@ body {
         gap: 10px;
         margin-top: 10px;
     }
-    /* ... your other media query styles ... */
+   
 }
 
-/* =================================== */
-/* PASTE THE NEW CODE AT THE VERY END  */
-/* =================================== */
-/* --- Styles for the new Event List --- */
+
 
 .events-list {
     margin-top: 40px;
@@ -198,23 +193,21 @@ body {
     border: 1px solid #ddd;
 }
 
-/* ... and so on for the rest of the new styles ... */
+
 .event-card .card-header h4 {
     margin: 0;
     color: #ff7200;
-    font-size: 40px; /* <-- Add this line to increase the font size */
+    font-size: 40px; 
 }
-/* Find and replace the existing rule with this one */
+
 .event-card .event-checkbox {
-    /* --- SIZE --- */
-    /* Change the number to make it bigger or smaller. 1.8 is larger than before. */
+    
     transform: scale(2);
     
-    /* --- ORIENTATION (Spacing) --- */
-    /* Adds space between the title and the checkbox */
+    
     margin-left: 1200px;
     
-    /* Optional: Uncomment the line below to nudge the checkbox down a bit */
+    
     margin-bottom: 1px; 
     
     cursor: pointer;
