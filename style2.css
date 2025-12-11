@@ -203,13 +203,8 @@ body {
 .event-card .event-checkbox {
     
     transform: scale(2);
-    
-    
     margin-left: 1200px;
-    
-    
     margin-bottom: 1px; 
-    
     cursor: pointer;
     margin-right: 10px;
 }
