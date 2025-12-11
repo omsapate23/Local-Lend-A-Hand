@@ -1,3 +1,27 @@
+import { auth } from './firebase-config.js';
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+// Check if user is logged in
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        // User is not logged in, redirect to login page
+        window.location.href = "organizer-login.html";
+    } else {
+        console.log("Organizer logged in:", user.email);
+    }
+});
+
+// Add a Logout button logic (You should add a logout button to your HTML)
+// Example: <button id="logout-btn">Logout</button>
+const logoutBtn = document.getElementById('logout-btn');
+if(logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+        signOut(auth).then(() => {
+            window.location.href = "index2.html";
+        });
+    });
+}
+
 // Import the necessary Firebase modules and your database configuration
 import { db } from './firebase-config.js';
 import { collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
