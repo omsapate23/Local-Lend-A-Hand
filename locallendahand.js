@@ -1,21 +1,37 @@
-// Import the necessary Firebase modules and your database configuration
+// locallendahand.js - UPDATED WITH LOADING SCREEN
+
+// Import the necessary Firebase modules
 import { db } from './firebase-config.js';
 import { collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// Wait for the entire HTML document to load before running the script
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Element Selections ---
+    // --- 1. Element Selections ---
     const tagTextContainer = document.querySelector('.tag-text');
     const getInvolvedBtn = document.querySelector('.tag-btn');
     const contactSection = document.querySelector('#contact');
     const serviceCards = document.querySelectorAll('.service-cards .card');
     const navLinks = document.querySelectorAll('.nav-menu a');
+    
+    // Select the Loading Screen
+    const loadingScreen = document.getElementById('loading-screen');
 
-    // --- Main Function to Load and Display Events from FIREBASE ---
+    // --- 2. Loading Screen Functions ---
+    function showLoading() {
+        if(loadingScreen) loadingScreen.classList.remove('hidden');
+    }
+
+    function hideLoading() {
+        if(loadingScreen) loadingScreen.classList.add('hidden');
+    }
+
+    // --- 3. Load and Display Events from FIREBASE ---
     async function loadAndDisplayEvents() {
+        // Show loader before starting the fetch
+        showLoading();
+
         try {
-            // Create a query to get all documents from the "opportunities" collection, sorted by date
+            // Create a query to get all documents from "opportunities"
             const q = query(collection(db, "opportunities"), orderBy("date", "asc"));
             const querySnapshot = await getDocs(q);
 
@@ -28,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
                  eventsContainer.innerHTML += '<p>No upcoming events found. Check back soon!</p>';
             }
 
-            // Loop through each event from the database and create a card
+            // Loop through each event and create a card
             querySnapshot.forEach(doc => {
                 const event = doc.data();
                 const eventCard = document.createElement('div');
@@ -49,36 +65,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 eventsContainer.appendChild(eventCard);
             });
 
-            // Insert the entire list of events before the "Get Involved" button
+            // Insert the list before the "Get Involved" button
             tagTextContainer.insertBefore(eventsContainer, getInvolvedBtn);
 
         } catch (error) {
-            console.error("Could not fetch or display events:", error);
+            console.error("Could not fetch events:", error);
             const errorElement = document.createElement('p');
             errorElement.textContent = 'Could not load events at this time.';
             tagTextContainer.insertBefore(errorElement, getInvolvedBtn);
+        } finally {
+            // Hide loader when done (success or error)
+            hideLoading();
         }
     }
 
-    // Call the function to load events when the page loads
+    // Call the function immediately
     loadAndDisplayEvents();
 
 
-    // --- "Get Involved" Button Functionality ---
-    getInvolvedBtn.addEventListener('click', (event) => {
-        event.preventDefault();
-        const selectedCheckboxes = document.querySelectorAll('.event-checkbox:checked');
+    // --- 4. "Get Involved" Button Functionality ---
+    if (getInvolvedBtn) {
+        getInvolvedBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            const selectedCheckboxes = document.querySelectorAll('.event-checkbox:checked');
 
-        if (selectedCheckboxes.length === 0) {
-            alert('Please select at least one event to get involved in!');
-            return;
-        }
-        const selectedEvents = Array.from(selectedCheckboxes).map(checkbox => checkbox.value);
-        contactSection.scrollIntoView({ behavior: 'smooth' });
-        createSignupForm(selectedEvents);
-    });
+            if (selectedCheckboxes.length === 0) {
+                alert('Please select at least one event to get involved in!');
+                return;
+            }
+            const selectedEvents = Array.from(selectedCheckboxes).map(checkbox => checkbox.value);
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+            createSignupForm(selectedEvents);
+        });
+    }
 
-    // --- Function to Dynamically Create the Sign-up Form ---
+    // --- 5. Dynamically Create Sign-up Form ---
     function createSignupForm(selectedEvents) {
         const oldForm = document.getElementById('signup-form-container');
         if (oldForm) {
@@ -102,6 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const signupForm = document.getElementById('signup-form');
         signupForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            
+            // NOTE: Currently this form works instantly on the client side.
+            // If you connect this to Firebase later to save volunteers, 
+            // you would wrap that logic in showLoading() / hideLoading() too.
+            
             const userName = signupForm.querySelector('input[name="name"]').value;
             alert(`Thank you, ${userName}! You've been signed up for the selected events. We'll be in touch soon.`);
             signupForm.reset();
@@ -109,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Add a subtle hover effect to service cards ---
+    // --- 6. Hover Effects ---
     serviceCards.forEach(card => {
         card.addEventListener('mouseenter', () => {
             card.style.transform = 'scale(1.05)';
@@ -120,13 +146,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Smooth scrolling for all navigation links ---
+    // --- 7. Smooth Scrolling ---
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             if (this.hash !== "") {
                 e.preventDefault();
                 const targetElement = document.querySelector(this.hash);
-                targetElement.scrollIntoView({ behavior: 'smooth' });
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         });
     });
